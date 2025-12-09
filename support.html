@@ -5,89 +5,66 @@
   <title>SimpleTime – Support</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Icon -->
-  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="img/favicon.png" type="image/png">
-  
-  <!-- CSS -->
+  <!-- Tab-Icon (Favicon) -->
+  <link rel="icon" href="image/favicon.png" type="image/png" />
+
+  <!-- CSS auslagern -->
   <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Sprachen / Texte -->
+  <script src="js/lang.js" defer></script>
 </head>
 <body>
   <div class="page">
     <header class="header">
-      <div class="logo-title">
-        <span class="logo-dot"></span>
-        <div>
-          <h1 data-i18n="title">SimpleTime – Support</h1>
-          <p class="subtitle" data-i18n="subtitle">
-            Hilfe & Kontakt für die SimpleTime App
-          </p>
+      <div class="brand">
+        <!-- Logo oben links – verwende hier dein Icon (größere Version) -->
+        <img src="simpletime-logo.png" alt="SimpleTime Logo" class="logo" />
+        <div class="brand-text">
+          <span class="app-name">SimpleTime</span>
+          <span class="app-tagline" data-i18n="tagline"></span>
         </div>
       </div>
 
-      <div class="language-switcher">
-        <label for="language-select" data-i18n="languageLabel">
-          Sprache
-        </label>
-        <select id="language-select">
+      <div class="controls">
+        <label for="language-select" class="language-label" data-i18n="languageLabel"></label>
+        <select id="language-select" class="language-select">
           <option value="de">Deutsch</option>
           <option value="en">English</option>
         </select>
       </div>
     </header>
 
-    <main class="content">
-      <section class="card">
-        <h2 data-i18n="introHeading">Willkommen</h2>
-        <p data-i18n="introText">
-          Danke, dass du SimpleTime verwendest! Wenn du Fragen, Feedback oder
-          Probleme hast, kannst du dich jederzeit melden.
-        </p>
-      </section>
+    <main class="content-card">
+      <h1 data-i18n="headline"></h1>
+      <p class="intro-text" data-i18n="intro"></p>
 
-      <section class="card">
-        <h2 data-i18n="contactHeading">Kontakt</h2>
+      <section class="section">
+        <h2 data-i18n="contactHeading"></h2>
         <p>
-          <span data-i18n="emailLabel">E-Mail:</span>
-          <a href="mailto:simpletime@lucaefinger.de">
-            simpletime@lucaefinger.de
-          </a>
+          <span data-i18n="contactEmailLabel"></span>
+          <a href="mailto:simpletime@lucaefinger.de">simpletime@lucaefinger.de</a>
         </p>
       </section>
 
-      <section class="card">
-        <h2 data-i18n="faqHeading">Häufige Fragen</h2>
+      <section class="section">
+        <h2 data-i18n="faqHeading"></h2>
         <ul class="faq-list">
           <li>
-            <strong data-i18n="faq1Question">
-              Datenverlust?
-            </strong>
-            <p data-i18n="faq1Answer">
-              Stelle sicher, dass iCloud in den iOS-Einstellungen aktiviert ist
-              und SimpleTime Zugriff auf iCloud hat.
-            </p>
+            <strong data-i18n="faqDataLossQuestion"></strong>
+            <p data-i18n="faqDataLossAnswer"></p>
           </li>
           <li>
-            <strong data-i18n="faq2Question">
-              Backup wiederherstellen?
-            </strong>
-            <p data-i18n="faq2Answer">
-              Öffne SimpleTime &gt; Einstellungen &gt; Backup und wähle die
-              gewünschte Backup-Datei.
-            </p>
+            <strong data-i18n="faqBackupQuestion"></strong>
+            <p data-i18n="faqBackupAnswer"></p>
           </li>
         </ul>
       </section>
     </main>
 
     <footer class="footer">
-      <small data-i18n="footerText">
-        SimpleTime – Entwickelt mit ❤️
-      </small>
+      <span>&copy; <span id="year"></span> SimpleTime</span>
     </footer>
   </div>
-
-  <!-- Sprach-Logik -->
-  <script src="js/lang.js" defer></script>
 </body>
 </html>
