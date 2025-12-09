@@ -1,7 +1,7 @@
 const translations = {
   de: {
     tagline: "Einfaches Zeit-Tracking, das mitdenkt.",
-    languageLabel: "Sprache:",
+    languageLabel: "Sprache",
     headline: "Support",
     intro:
       "Danke, dass du SimpleTime verwendest! Wenn du Fragen, Feedback oder Probleme hast, kannst du dich jederzeit melden.",
@@ -15,9 +15,10 @@ const translations = {
     faqBackupAnswer:
       "Öffne SimpleTime → Einstellungen → Backup und wähle die gewünschte Backup-Datei."
   },
+
   en: {
     tagline: "Simple time tracking that just works.",
-    languageLabel: "Language:",
+    languageLabel: "Language",
     headline: "Support",
     intro:
       "Thank you for using SimpleTime! If you have any questions, feedback, or issues, feel free to reach out.",
@@ -33,35 +34,48 @@ const translations = {
   }
 };
 
+function getLangFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("lang");
+}
+
 function setLanguage(lang) {
   const dict = translations[lang] || translations.de;
+
   document.documentElement.lang = lang;
 
   document.querySelectorAll("[data-i18n]").forEach((el) => {
-    const key = el.getAttribute("data-i18n");
+    const key = el.dataset.i18n;
     if (dict[key]) {
       el.textContent = dict[key];
     }
   });
+
+  const select = document.getElementById("language-select");
+  if (select) select.value = lang;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Jahr im Footer
-  const yearSpan = document.getElementById("year");
-  if (yearSpan) {
-    yearSpan.textContent = new Date().getFullYear();
-  }
+  const urlLang = getLangFromURL();
+
+  const browserLang = (navigator.language || "de").slice(0, 2);
+
+  const lang =
+    urlLang && translations[urlLang]
+      ? urlLang
+      : translations[browserLang]
+      ? browserLang
+      : "de";
+
+  setLanguage(lang);
 
   const select = document.getElementById("language-select");
-
-  // Sprache aus Browser übernehmen, sonst Deutsch
-  const browserLang = (navigator.language || "de").slice(0, 2);
-  const initialLang = translations[browserLang] ? browserLang : "de";
-
-  select.value = initialLang;
-  setLanguage(initialLang);
-
-  select.addEventListener("change", () => {
-    setLanguage(select.value);
-  });
+  if (select) {
+    select.addEventListener("change", () => {
+      const newLang = select.value;
+      const url = new URL(window.location);
+      url.searchParams.set("lang", newLang);
+      window.location.href = url.toString();
+    });
+  }
 });
