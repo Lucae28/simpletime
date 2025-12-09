@@ -31,7 +31,24 @@ const translations = {
     faqBackupQuestion: "Restore a backup?",
     faqBackupAnswer:
       "Open SimpleTime → Settings → Backup and choose the backup file you want to restore."
-  }
+  },
+
+  fr: {
+  tagline: "Un suivi du temps simple et intelligent.",
+  languageLabel: "Langue",
+  headline: "Support",
+  intro:
+    "Merci d’utiliser SimpleTime ! Si vous avez des questions, des remarques ou des problèmes, n’hésitez pas à nous contacter.",
+  contactHeading: "Contact",
+  contactEmailLabel: "E-mail :",
+  faqHeading: "Questions fréquentes",
+  faqDataLossQuestion: "Perte de données ?",
+  faqDataLossAnswer:
+    "Assurez-vous qu’iCloud est activé dans les réglages iOS et que SimpleTime a l’autorisation d’utiliser iCloud.",
+  faqBackupQuestion: "Restaurer une sauvegarde ?",
+  faqBackupAnswer:
+    "Ouvrez SimpleTime → Réglages → Sauvegarde, puis sélectionnez la sauvegarde souhaitée."
+}
 };
 
 function getLangFromURL() {
