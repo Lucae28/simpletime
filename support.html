@@ -4,54 +4,86 @@
   <meta charset="UTF-8" />
   <title>SimpleTime – Support</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Externes CSS -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="st-header">
-    <div class="st-header-inner">
-      <div>
-        <h1 data-i18n="heading"></h1>
-        <p class="st-subtitle" data-i18n="subtitle"></p>
+  <div class="page">
+    <header class="header">
+      <div class="logo-title">
+        <span class="logo-dot"></span>
+        <div>
+          <h1 data-i18n="title">SimpleTime – Support</h1>
+          <p class="subtitle" data-i18n="subtitle">
+            Hilfe & Kontakt für die SimpleTime App
+          </p>
+        </div>
       </div>
 
-      <div class="st-language-switcher">
-        <label for="languageSwitcher" data-i18n="language-label"></label>
-        <select id="languageSwitcher">
+      <div class="language-switcher">
+        <label for="language-select" data-i18n="languageLabel">
+          Sprache
+        </label>
+        <select id="language-select">
           <option value="de">Deutsch</option>
           <option value="en">English</option>
         </select>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <main class="st-main">
-    <section class="st-card">
-      <h2 data-i18n="contact-heading"></h2>
-      <p>
-        <span data-i18n="contact-email-label"></span>
-        <a href="mailto:simpletime@lucaefinger.de">simpletime@lucaefinger.de</a>
-      </p>
-    </section>
+    <main class="content">
+      <section class="card">
+        <h2 data-i18n="introHeading">Willkommen</h2>
+        <p data-i18n="introText">
+          Danke, dass du SimpleTime verwendest! Wenn du Fragen, Feedback oder
+          Probleme hast, kannst du dich jederzeit melden.
+        </p>
+      </section>
 
-    <section class="st-card">
-      <h2 data-i18n="faq-heading"></h2>
-      <ul class="st-faq-list">
-        <li>
-          <strong data-i18n="faq1-question"></strong>
-          <p data-i18n="faq1-answer"></p>
-        </li>
-        <li>
-          <strong data-i18n="faq2-question"></strong>
-          <p data-i18n="faq2-answer"></p>
-        </li>
-      </ul>
-    </section>
-  </main>
+      <section class="card">
+        <h2 data-i18n="contactHeading">Kontakt</h2>
+        <p>
+          <span data-i18n="emailLabel">E-Mail:</span>
+          <a href="mailto:simpletime@lucaefinger.de">
+            simpletime@lucaefinger.de
+          </a>
+        </p>
+      </section>
 
-  <footer class="st-footer">
-    <p data-i18n="footer-note"></p>
-  </footer>
+      <section class="card">
+        <h2 data-i18n="faqHeading">Häufige Fragen</h2>
+        <ul class="faq-list">
+          <li>
+            <strong data-i18n="faq1Question">
+              Datenverlust?
+            </strong>
+            <p data-i18n="faq1Answer">
+              Stelle sicher, dass iCloud in den iOS-Einstellungen aktiviert ist
+              und SimpleTime Zugriff auf iCloud hat.
+            </p>
+          </li>
+          <li>
+            <strong data-i18n="faq2Question">
+              Backup wiederherstellen?
+            </strong>
+            <p data-i18n="faq2Answer">
+              Öffne SimpleTime &gt; Einstellungen &gt; Backup und wähle die
+              gewünschte Backup-Datei.
+            </p>
+          </li>
+        </ul>
+      </section>
+    </main>
 
-  <script src="app.js"></script>
+    <footer class="footer">
+      <small data-i18n="footerText">
+        SimpleTime – Entwickelt mit ❤️
+      </small>
+    </footer>
+  </div>
+
+  <!-- Sprach-Logik -->
+  <script src="lang.js" defer></script>
 </body>
 </html>
