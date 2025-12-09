@@ -6,11 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Tab-Icon (Favicon) -->
-  <link rel="icon" href="img/favicon.png" type="image/png">
+  <link rel="icon" href="img/favicon.png" type="image/png" />
 
-  <!-- CSS auslagern -->
-<link rel="stylesheet" href="css/styles.css">
-  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css" />
+
   <!-- Sprachen / Texte -->
   <script src="js/lang.js" defer></script>
 </head>
@@ -18,8 +18,8 @@
   <div class="page">
     <header class="header">
       <div class="brand">
-        <!-- Logo oben links – verwende hier dein Icon (größere Version) -->
-        <img src="img/simpletimelogo.png" alt="SimpleTime Logo" class="logo" />
+        <!-- Nutze hier dein App-Icon (kann auch eine größere Version sein) -->
+        <img src="img/favicon.png" alt="SimpleTime Logo" class="logo" />
         <div class="brand-text">
           <span class="app-name">SimpleTime</span>
           <span class="app-tagline" data-i18n="tagline"></span>
@@ -67,5 +67,10 @@
       <span>&copy; <span id="year"></span> SimpleTime</span>
     </footer>
   </div>
+
+  <script>
+    // Jahr im Footer setzen
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
