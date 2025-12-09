@@ -4,141 +4,54 @@
   <meta charset="UTF-8" />
   <title>SimpleTime – Support</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="page">
-    <div class="card">
-      <header>
-        <div class="app-title">
-          <h1>
-            SimpleTime
-            <span class="badge" data-i18n="badge_support">Support</span>
-          </h1>
-          <p class="subtitle" data-i18n="subtitle">
-            Hilfe, Support &amp; Kontakt rund um SimpleTime.
-          </p>
-        </div>
+  <header class="st-header">
+    <div class="st-header-inner">
+      <div>
+        <h1 data-i18n="heading"></h1>
+        <p class="st-subtitle" data-i18n="subtitle"></p>
+      </div>
 
-        <!-- Sprachumschalter -->
-        <div class="lang-switch" aria-label="Sprache wählen">
-          <button class="lang-btn active" data-lang="de">DE</button>
-          <button class="lang-btn" data-lang="en">EN</button>
-        </div>
-      </header>
-
-      <main>
-        <section>
-          <p data-i18n="intro">
-            Danke, dass du SimpleTime verwendest! Wenn du Fragen, Feedback oder Probleme hast, kannst du dich jederzeit melden.
-          </p>
-          <div class="chip">
-            <span class="chip-dot"></span>
-            <span data-i18n="chip_text">Antwort in der Regel innerhalb von 24&nbsp;Stunden.</span>
-          </div>
-        </section>
-
-        <section>
-          <h2 data-i18n="contact_heading">Kontakt</h2>
-          <p data-i18n="contact_text">
-            E-Mail:
-            <a href="mailto:simpletime@lucaefinger.de">simpletime@lucaefinger.de</a>
-          </p>
-        </section>
-
-        <section>
-          <h2 data-i18n="faq_heading">Häufige Fragen</h2>
-          <ul>
-            <li data-i18n="faq_data_loss">
-              <strong>Datenverlust?</strong> Stelle sicher, dass iCloud in den iOS-Einstellungen aktiviert ist und SimpleTime Zugriff auf iCloud hat.
-            </li>
-            <li data-i18n="faq_backup">
-              <strong>Backup wiederherstellen?</strong> Öffne SimpleTime &gt; Einstellungen &gt; Backup und wähle die gewünschte Backup-Datei.
-            </li>
-          </ul>
-        </section>
-      </main>
+      <div class="st-language-switcher">
+        <label for="languageSwitcher" data-i18n="language-label"></label>
+        <select id="languageSwitcher">
+          <option value="de">Deutsch</option>
+          <option value="en">English</option>
+        </select>
+      </div>
     </div>
-  </div>
+  </header>
 
-  <script>
-    const translations = {
-      de: {
-        badge_support: "Support",
-        subtitle: "Hilfe, Support &amp; Kontakt rund um SimpleTime.",
-        intro:
-          "Danke, dass du SimpleTime verwendest! Wenn du Fragen, Feedback oder Probleme hast, kannst du dich jederzeit melden.",
-        chip_text: "Antwort in der Regel innerhalb von 24&nbsp;Stunden.",
-        contact_heading: "Kontakt",
-        contact_text:
-          'E-Mail: <a href="mailto:simpletime@lucaefinger.de">simpletime@lucaefinger.de</a>',
-        faq_heading: "Häufige Fragen",
-        faq_data_loss:
-          "<strong>Datenverlust?</strong> Stelle sicher, dass iCloud in den iOS-Einstellungen aktiviert ist und SimpleTime Zugriff auf iCloud hat.",
-        faq_backup:
-          "<strong>Backup wiederherstellen?</strong> Öffne SimpleTime &gt; Einstellungen &gt; Backup und wähle die gewünschte Backup-Datei."
-      },
-      en: {
-        badge_support: "Support",
-        subtitle: "Help, support & contact for SimpleTime.",
-        intro:
-          "Thanks for using SimpleTime! If you have any questions, feedback or issues, feel free to reach out anytime.",
-        chip_text: "Usually replies within 24&nbsp;hours.",
-        contact_heading: "Contact",
-        contact_text:
-          'Email: <a href="mailto:simpletime@lucaefinger.de">simpletime@lucaefinger.de</a>',
-        faq_heading: "Frequently Asked Questions",
-        faq_data_loss:
-          "<strong>Lost data?</strong> Make sure iCloud is enabled in iOS settings and that SimpleTime has access to iCloud.",
-        faq_backup:
-          "<strong>Restore a backup?</strong> Open SimpleTime &gt; Settings &gt; Backup and choose the backup file you want to restore."
-      }
-    };
+  <main class="st-main">
+    <section class="st-card">
+      <h2 data-i18n="contact-heading"></h2>
+      <p>
+        <span data-i18n="contact-email-label"></span>
+        <a href="mailto:simpletime@lucaefinger.de">simpletime@lucaefinger.de</a>
+      </p>
+    </section>
 
-    function setLanguage(lang) {
-      const elements = document.querySelectorAll("[data-i18n]");
-      const dict = translations[lang];
+    <section class="st-card">
+      <h2 data-i18n="faq-heading"></h2>
+      <ul class="st-faq-list">
+        <li>
+          <strong data-i18n="faq1-question"></strong>
+          <p data-i18n="faq1-answer"></p>
+        </li>
+        <li>
+          <strong data-i18n="faq2-question"></strong>
+          <p data-i18n="faq2-answer"></p>
+        </li>
+      </ul>
+    </section>
+  </main>
 
-      elements.forEach((el) => {
-        const key = el.getAttribute("data-i18n");
-        if (dict[key]) {
-          el.innerHTML = dict[key];
-        }
-      });
+  <footer class="st-footer">
+    <p data-i18n="footer-note"></p>
+  </footer>
 
-      // lang-Attribut auf html setzen
-      document.documentElement.lang = lang;
-
-      // aktiven Button hervorheben
-      document
-        .querySelectorAll(".lang-btn")
-        .forEach((btn) => btn.classList.toggle("active", btn.dataset.lang === lang));
-
-      // Auswahl speichern
-      try {
-        localStorage.setItem("simpletime_lang", lang);
-      } catch (e) {}
-    }
-
-    // Events für Buttons
-    document.querySelectorAll(".lang-btn").forEach((btn) => {
-      btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
-    });
-
-    // Beim Laden letzte Auswahl wiederherstellen oder Browser-Sprache nutzen
-    (function initLanguage() {
-      let lang = "de";
-      try {
-        const saved = localStorage.getItem("simpletime_lang");
-        if (saved && translations[saved]) {
-          lang = saved;
-        } else {
-          const browserLang = navigator.language?.slice(0, 2).toLowerCase();
-          if (translations[browserLang]) lang = browserLang;
-        }
-      } catch (e) {}
-      setLanguage(lang);
-    })();
-  </script>
+  <script src="app.js"></script>
 </body>
 </html>
