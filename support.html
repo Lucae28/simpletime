@@ -5,21 +5,344 @@
   <title>SimpleTime – Support</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 16px; line-height: 1.5; }
-    h1 { font-size: 2rem; }
+    :root {
+      --bg: #0f172a;
+      --bg-soft: #020617;
+      --card: #020617;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --accent-strong: rgba(56, 189, 248, 0.2);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: rgba(148, 163, 184, 0.2);
+      --radius-lg: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top, #1f2937 0, transparent 55%),
+        radial-gradient(circle at bottom, #020617 0, #020617 55%);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 720px;
+    }
+
+    .card {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98));
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      box-shadow:
+        0 24px 60px rgba(15, 23, 42, 0.85),
+        0 0 0 1px rgba(15, 23, 42, 0.9);
+      padding: 24px 22px 22px;
+      backdrop-filter: blur(18px);
+    }
+
+    @media (min-width: 600px) {
+      .card {
+        padding: 28px 28px 24px;
+      }
+    }
+
+    .header-row {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .logo-pill {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #f9fafb 0, #e5e7eb 18%, #38bdf8 45%, #0f172a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: #020617;
+      box-shadow:
+        0 0 0 1px rgba(15, 23, 42, 0.7),
+        0 10px 30px rgba(15, 23, 42, 0.9);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      letter-spacing: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    h1 span:first-child {
+      font-weight: 700;
+    }
+
+    h1 span:last-child {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .intro {
+      margin-bottom: 18px;
+      font-size: 0.97rem;
+      color: var(--muted);
+    }
+
+    .section {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(31, 41, 55, 0.95);
+    }
+
+    .section:first-of-type {
+      margin-top: 12px;
+    }
+
+    .section-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .section-badge {
+      font-size: 0.7rem;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 55%);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .contact-card {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top left, var(--accent-soft), transparent 60%);
+      border: 1px solid var(--border);
+      padding: 12px 12px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .contact-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .contact-mail {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--text);
+      transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.85);
+    }
+
+    .contact-mail span.icon {
+      font-size: 1rem;
+    }
+
+    .contact-mail span.text {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .contact-mail:hover {
+      transform: translateY(-1px);
+      border-color: var(--accent);
+      box-shadow:
+        0 14px 38px rgba(15, 23, 42, 0.9),
+        0 0 0 1px rgba(56, 189, 248, 0.2);
+    }
+
+    .contact-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .faq-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.93rem;
+    }
+
+    .faq-item {
+      border-radius: var(--radius-lg);
+      padding: 10px 11px;
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      background:
+        linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98)),
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.08), transparent 60%);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 6px 10px;
+      align-items: start;
+    }
+
+    .faq-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      margin-top: 7px;
+      background: radial-gradient(circle at top left, #e5e7eb 0, #38bdf8 40%, #0369a1 100%);
+      box-shadow: 0 0 0 3px var(--accent-strong);
+    }
+
+    .faq-title {
+      font-weight: 600;
+      margin-bottom: 2px;
+      color: #e5e7eb;
+    }
+
+    .faq-text {
+      color: var(--muted);
+    }
+
+    .footer {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px dashed rgba(55, 65, 81, 0.85);
+      font-size: 0.78rem;
+      color: #6b7280;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .footer span:last-child {
+      opacity: 0.85;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 18px 12px;
+      }
+
+      .card {
+        padding: 20px 16px 18px;
+      }
+
+      .header-row {
+        align-items: flex-start;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>SimpleTime – Support</h1>
-  <p>Danke, dass du SimpleTime verwendest! Wenn du Fragen, Feedback oder Probleme hast, kannst du dich jederzeit melden.</p>
+  <main class="page">
+    <section class="card" aria-label="SimpleTime Support">
+      <header class="header-row">
+        <div class="logo-pill" aria-hidden="true">
+          S
+        </div>
+        <h1>
+          <span>SimpleTime Support</span>
+          <span>Hilfe &amp; Kontakt</span>
+        </h1>
+      </header>
 
-  <h2>Kontakt</h2>
-  <p>E-Mail: <a href="mailto:simpletime@lucaefinger.de">simpletime@lucaefinger.de</a></p>
+      <p class="intro">
+        Danke, dass du SimpleTime verwendest. Wenn du Fragen, Feedback oder Probleme hast, kannst du dich jederzeit melden.
+      </p>
 
-  <h2>Häufige Fragen</h2>
-  <ul>
-    <li><strong>Datenverlust?</strong> Stelle sicher, dass iCloud in den iOS-Einstellungen aktiviert ist und SimpleTime Zugriff auf iCloud hat.</li>
-    <li><strong>Backup wiederherstellen?</strong> Öffne SimpleTime &gt; Einstellungen &gt; Backup und wähle die gewünschte Backup-Datei.</li>
-  </ul>
+      <section class="section" aria-labelledby="kontakt-heading">
+        <div class="section-title-row">
+          <h2 id="kontakt-heading" class="section-title">Kontakt</h2>
+          <span class="section-badge">Direkter Kontakt</span>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-label">E-Mail</div>
+          <a class="contact-mail" href="mailto:simpletime@lucaefinger.de">
+            <span class="icon">✉️</span>
+            <span class="text">simpletime@lucaefinger.de</span>
+          </a>
+          <p class="contact-note">
+            Ich antworte dir in der Regel innerhalb weniger Tage.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="faq-heading">
+        <div class="section-title-row">
+          <h2 id="faq-heading" class="section-title">Häufige Fragen</h2>
+          <span class="section-badge">Kurze Antworten</span>
+        </div>
+
+        <ul class="faq-list">
+          <li class="faq-item">
+            <span class="faq-dot" aria-hidden="true"></span>
+            <div>
+              <div class="faq-title">Datenverlust?</div>
+              <p class="faq-text">
+                Stelle sicher, dass iCloud in den iOS-Einstellungen aktiviert ist und SimpleTime Zugriff auf iCloud hat.
+              </p>
+            </div>
+          </li>
+          <li class="faq-item">
+            <span class="faq-dot" aria-hidden="true"></span>
+            <div>
+              <div class="faq-title">Backup wiederherstellen?</div>
+              <p class="faq-text">
+                Öffne SimpleTime &gt; Einstellungen &gt; Backup und wähle die gewünschte Backup-Datei aus.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <footer class="footer">
+        <span>SimpleTime für iOS</span>
+        <span>Vielen Dank für deine Unterstützung 💙</span>
+      </footer>
+    </section>
+  </main>
 </body>
 </html>
